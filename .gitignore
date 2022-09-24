@@ -1,0 +1,9 @@
+backend/src/API/bin/
+backend/src/API/obj/
+backend/.vs/
+backend/src/Core/bin/
+backend/src/Core/obj/
+backend/src/Infrastructure/bin/
+backend/src/Infrastructure/obj/
+
+
