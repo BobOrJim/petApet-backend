@@ -25,7 +25,7 @@ Post https://puppy-backend.azurewebsites.net/api/V01/Advert/AddAdvert
 content-type: application/json
 
 {
-  "userId": "1DDCEAEE-95DC-4650-3222-08DA9D96DF47",
+  "userId": "32AE3A32-7E2F-410D-1401-08DA9E5DEB4B",
   "name": "NalleKalle",
   "age": 120,
   "race": "string",
@@ -39,11 +39,11 @@ content-type: application/json
 ###
 DELETE https://puppy-backend.azurewebsites.net/api/V01/Advert/DeleteAdvertById/8362AF28-6A6F-41D5-928B-08DA9D96DF53
 ###
-PATCH  https://puppy-backend.azurewebsites.net/api/V01/Advert/UpdateAdvertById/BA08EBA2-BAE6-4ED2-928C-08DA9D96DF53
+PATCH  https://puppy-backend.azurewebsites.net/api/V01/Advert/UpdateAdvert/AE27D4F0-2404-43E0-E6E1-08DA9E5DEB56
 content-type: application/json
 
 {
-  "userId": "B7D95522-B12F-4DAD-3223-08DA9D96DF47",
+  "userId": "32AE3A32-7E2F-410D-1401-08DA9E5DEB4B",
   "name": "HejDåDå",
   "age": 120,
   "race": "string",

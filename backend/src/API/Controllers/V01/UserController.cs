@@ -1,5 +1,4 @@
-﻿using API.Dto;
-using Core.Entities;
+﻿using Core.Entities;
 using Core.Interfaces.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -19,29 +18,24 @@ namespace API.Controllers.V01
             _iUserService = iUserService;
         }
         
-        //CRUD
-
         [HttpPost]
         [Route("AddUser", Name = "AddUserAsync")]
-        public async Task<IActionResult> AddUserAsync([FromBody] UserDro userDro)
+        public async Task<IActionResult> AddUserAsync([FromBody] UserDto userDto)
         {
-            Debug.WriteLine("1");
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
             try
             {
-                Debug.WriteLine("2");
                 User user = new User
                 {
-                    Alias = userDro.Alias,
-                    Email = userDro.Email,
-                    PhoneNr = userDro.PhoneNr,
-                    IsLoggedIn = userDro.IsLoggedIn,
-                    ProfilePictureUrl = userDro.ProfilePictureUrl,
+                    Alias = userDto.Alias,
+                    Email = userDto.Email,
+                    PhoneNr = userDto.PhoneNr,
+                    IsLoggedIn = userDto.IsLoggedIn,
+                    ProfilePictureUrl = userDto.ProfilePictureUrl,
                 };
-                Debug.WriteLine("3");
                 await _iUserService.InsertAsync(user);
                 return Ok();
                 //return CreatedAtRoute("GetUserById", new { id = user.Id }, user);
@@ -74,7 +68,7 @@ namespace API.Controllers.V01
 
         [HttpPatch] //PATCH always have a body.
         [Route("UpdateUser/{id:Guid}", Name = "UpdateUserAsync")]
-        public async Task<IActionResult> UpdateUserAsync(Guid id, [FromBody] UserDro userDro)
+        public async Task<IActionResult> UpdateUserAsync(Guid id, [FromBody] UserDto userDto)
         {
             if (!ModelState.IsValid)
             {
@@ -84,11 +78,12 @@ namespace API.Controllers.V01
             {
                 User user = new User
                 {
-                    Alias = userDro.Alias,
-                    Email = userDro.Email,
-                    PhoneNr = userDro.PhoneNr,
-                    IsLoggedIn = userDro.IsLoggedIn,
-                    ProfilePictureUrl = userDro.ProfilePictureUrl,
+                    Id = id,
+                    Alias = userDto.Alias,
+                    Email = userDto.Email,
+                    PhoneNr = userDto.PhoneNr,
+                    IsLoggedIn = userDto.IsLoggedIn,
+                    ProfilePictureUrl = userDto.ProfilePictureUrl,
                 };
                 if (await _iUserService.GetByIdAsync(id) == null)
                 {

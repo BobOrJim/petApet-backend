@@ -3,6 +3,7 @@ using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 using Core.Interfaces.Services;
+using System.Diagnostics;
 
 namespace Infrastructure.Repository
 {
@@ -29,7 +30,9 @@ namespace Infrastructure.Repository
 
         public async Task<T> UpdateAsync(T entity)
         {
-            _entities.Update(entity);
+            T? storedEntity = await _entities.FindAsync(entity.Id);
+            if (storedEntity == null) throw new Exception("Entity to update not found");
+            _context.Entry(storedEntity).CurrentValues.SetValues(entity);
             return await _context.SaveChangesAsync() > 0 ? entity : throw new Exception("Update failed");
         }
 

@@ -38,6 +38,8 @@ namespace API.Controllers.V01
 
                 var authClaims = new List<Claim>
                 {
+                    //add id to claim
+                    new Claim(ClaimTypes.Anonymous, user.Id),
                     new Claim(ClaimTypes.Name, user.UserName),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 };
@@ -52,7 +54,8 @@ namespace API.Controllers.V01
                 return Ok(new
                 {
                     token = new JwtSecurityTokenHandler().WriteToken(token),
-                    expiration = token.ValidTo
+                    expiration = token.ValidTo,
+                    user = user.Id
                 });
             }
             return Unauthorized();
@@ -120,7 +123,7 @@ namespace API.Controllers.V01
             var token = new JwtSecurityToken(
                 issuer: _configuration["JWT:ValidIssuer"],
                 audience: _configuration["JWT:ValidAudience"],
-                expires: DateTime.Now.AddHours(3),
+                expires: DateTime.Now.AddDays(21),
                 claims: authClaims,
                 signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
                 );

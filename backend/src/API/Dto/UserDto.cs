@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Core.Entities
 {
-    public class UserDro
+    public class UserDto
     {
         [MaxLength(200)]
         public string Alias { get; set; } = "";
@@ -27,3 +27,6 @@ namespace Core.Entities
         public List<Advert>? Adverts { get; set; } = new(); //EF use this to create a relation between User and Advert
     }
 }
+
+
+    

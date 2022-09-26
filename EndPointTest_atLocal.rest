@@ -25,8 +25,8 @@ Post https://localhost:7018/api/V01/Advert/AddAdvert
 content-type: application/json
 
 {
-  "userId": "1DDCEAEE-95DC-4650-3222-08DA9D96DF47",
-  "name": "NalleKalle",
+  "userId": "32AE3A32-7E2F-410D-1401-08DA9E5DEB4B",
+  "name": "Monday2",
   "age": 120,
   "race": "string",
   "sex": "string",
@@ -39,12 +39,15 @@ content-type: application/json
 ###
 DELETE https://localhost:7018/api/V01/Advert/DeleteAdvertById/8362AF28-6A6F-41D5-928B-08DA9D96DF53
 ###
-PATCH  https://localhost:7018/api/V01/Advert/UpdateAdvertById/BA08EBA2-BAE6-4ED2-928C-08DA9D96DF53
+
+
+###
+PATCH  https://localhost:7018/api/V01/Advert/UpdateAdvert/AE27D4F0-2404-43E0-E6E1-08DA9E5DEB56
 content-type: application/json
 
 {
-  "userId": "B7D95522-B12F-4DAD-3223-08DA9D96DF47",
-  "name": "HejDåDå",
+  "userId": "32AE3A32-7E2F-410D-1401-08DA9E5DEB4B",
+  "name": "HejGurgulath",
   "age": 120,
   "race": "string",
   "sex": "string",
@@ -63,7 +66,7 @@ POST https://localhost:7018/api/V01/User/AddUser
 content-type: application/json
 
 {
-  "alias": "asdf",
+  "alias": "JanBannanMonday",
   "email": "asdf@example.com",
   "phoneNr": "string",
   "isLoggedIn": true,
@@ -75,11 +78,11 @@ content-type: application/json
 DELETE https://localhost:7018/api/V01/User/DeleteUserById/E2CAEFC4-A65E-4CAD-E5E1-08DA9DAB87C6
 ###
 
-PATCH  https://localhost:7018/api/V01/User/UpdateUser/DDA0F0EC-7073-4822-3225-08DA9D96DF47
+PATCH  https://localhost:7018/api/V01/User/UpdateUser/DD7EDBD1-1DED-4D73-2684-08DA9FB24463
 content-type: application/json
 
 {
-  "alias": "string",
+  "alias": "VillInteHetaJanneMer",
   "email": "julgran2@example.com",
   "phoneNr": "string",
   "isLoggedIn": true,

@@ -1,8 +1,10 @@
-﻿using API.Dto;
+﻿
+using API.Dto;
 using Core.Entities;
 using Core.Interfaces.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using System.Linq.Expressions;
 
@@ -19,10 +21,9 @@ namespace API.Controllers.V01
             _iAdvertService = iAdvertService;
         }
         
-        //CRUD
-        [HttpPost] //Funkar
+        [HttpPost] 
         [Route("AddAdvert", Name = "AddAdvertAsync")]
-        public async Task<IActionResult> AddAdvertAsync([FromBody] AdvertDro advertDro)
+        public async Task<IActionResult> AddAdvertAsync([FromBody] AdvertDto advertDto)
         {
             if (!ModelState.IsValid)
             {
@@ -30,17 +31,17 @@ namespace API.Controllers.V01
             }
             try
             {
-                Advert advert = new Advert
-                {
-                    UserId = Guid.Parse(advertDro.UserId),
-                    Name = advertDro.Name,
-                    Age = advertDro.Age,
-                    Race = advertDro.Race,
-                    Sex = advertDro.Sex,
-                    Personallity = advertDro.Personallity,
-                    RentPeriod = advertDro.Grade,
-                    Review = advertDro.Review,
-                    ImageUrls = advertDro.ImageUrls
+                 Advert advert = new Advert {
+                    UserId = Guid.Parse(advertDto.UserId),
+                    Name = advertDto.Name,
+                    Age = advertDto.Age,
+                    Race = advertDto.Race,
+                    Sex = advertDto.Sex,
+                    Personallity = advertDto.Personallity,
+                    RentPeriod = advertDto.RentPeriod,
+                    Grade = advertDto.Grade,
+                    Review = advertDto.Review,
+                    ImageUrls = advertDto.ImageUrls,
                 };
                 await _iAdvertService.InsertAsync(advert);
                 return Ok();
@@ -52,7 +53,7 @@ namespace API.Controllers.V01
             }
         }
 
-        [HttpGet] //Funkar
+        [HttpGet] 
         [Route("GetAdvertById/{id:Guid}", Name = "GetAdvertByIdAsync")]
         public async Task<IActionResult> GetAdvertByIdAsync(Guid id)
         {
@@ -66,7 +67,7 @@ namespace API.Controllers.V01
             return Ok(Advert);
         }
 
-        [HttpGet] //Funkar
+        [HttpGet] 
         [Route("GetAllAdverts", Name = "GetAllAdvertsAsync")]
         public async Task<IActionResult> GetAllAdvertsAsync()
         {
@@ -75,37 +76,33 @@ namespace API.Controllers.V01
         }
 
         [HttpPatch] //PATCH always have a body.
-        [Route("UpdateAdvertById/{id:Guid}", Name = "UpdateAdvertByIdAsync")]
-        public async Task<IActionResult> UpdateAdvertByIdAsync(Guid id, [FromBody] AdvertDro advertDro)
+        [Route("UpdateAdvert/{id:Guid}", Name = "UpdateAdvertAsync")]
+        public async Task<IActionResult> UpdateAdvertAsync(Guid id, [FromBody] AdvertDto advertDto)
         {
-            Debug.WriteLine("1");
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
             try
             {
-                Debug.WriteLine("2");
-
+                Advert advert = new Advert
+                {
+                    Id = id,
+                    UserId = Guid.Parse(advertDto.UserId),
+                    Name = advertDto.Name,
+                    Age = advertDto.Age,
+                    Race = advertDto.Race,
+                    Sex = advertDto.Sex,
+                    Personallity = advertDto.Personallity,
+                    RentPeriod = advertDto.RentPeriod,
+                    Grade = advertDto.Grade,
+                    Review = advertDto.Review,
+                    ImageUrls = advertDto.ImageUrls,
+                };
                 if (await _iAdvertService.GetByIdAsync(id) == null)
                 {
                     return NotFound();
                 }
-                Advert advert = new Advert
-                {
-                    UserId = Guid.Parse(advertDro.UserId),
-                    Name = advertDro.Name,
-                    Age = advertDro.Age,
-                    Race = advertDro.Race,
-                    Sex = advertDro.Sex,
-                    Personallity = advertDro.Personallity,
-                    RentPeriod = advertDro.RentPeriod,
-                    Grade = advertDro.Grade,
-                    Review = advertDro.Review,
-                    ImageUrls = advertDro.ImageUrls
-                };
-                Debug.WriteLine("3");
-
                 await _iAdvertService.UpdateAsync(advert);
                 return Ok(advert);
             }
@@ -117,7 +114,9 @@ namespace API.Controllers.V01
 
 
 
-
+        //ToDo:
+        //Plocka ut auth.id ur token, och kolla att detta id kan spåras bakåt via user
+        //till advert, och så att det som önskas tas bort tillhör user som lagt till.
         [HttpDelete] //Funkar
         [Route("DeleteAdvertById/{id:Guid}", Name = "DeleteAdvertByIdAsync")]
         public async Task<IActionResult> DeleteAdvertByIdAsync(Guid id)

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace API.Dto
 {
-    public class AdvertDro
+    public class AdvertDto
     {
 
         [MaxLength(200)]
