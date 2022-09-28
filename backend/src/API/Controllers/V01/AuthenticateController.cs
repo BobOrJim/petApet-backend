@@ -50,9 +50,9 @@ namespace API.Controllers.V01
                     {
                         throw new Exception("User does not exist in PuppyDb, and backend failed to create one");
                     }
-                    userInPuppyDbId = userInPuppyDb.Id.ToString();
                 }
-
+                
+                userInPuppyDbId = userInPuppyDb.Id.ToString();
                 var userRoles = await _userManager.GetRolesAsync(user);
                 var authClaims = new List<Claim>
                 {
