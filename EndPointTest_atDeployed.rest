@@ -3,7 +3,7 @@ POST https://puppy-backend.azurewebsites.net/api/V01/Authenticate/login
 content-type: application/json
 
 {
-  "username": "test4",
+  "username": "kalleknut",
   "password": "password_A1"
 }
 ###
@@ -11,12 +11,12 @@ POST https://puppy-backend.azurewebsites.net/api/V01/Authenticate/register
 content-type: application/json
 
 {
-  "username": "test4",
-  "email": "slask@example.com",
+  "username": "kalleknut",
+  "email": "kalleknut@example.com",
   "password": "password_A1"
 }
 ###
-DELETE https://puppy-backend.azurewebsites.net/api/V01/Authenticate/deleteAuthUserById/050c70d3-6d59-450e-9719-93ac3faf165a
+DELETE https://puppy-backend.azurewebsites.net/api/V01/Authenticate/deleteAuthUserById/322a8943-370e-4190-ac9f-4deccc700cb6
 
 ###
 GET https://puppy-backend.azurewebsites.net/api/V01/Advert/GetAllAdverts
@@ -28,31 +28,31 @@ Post https://puppy-backend.azurewebsites.net/api/V01/Advert/AddAdvert
 content-type: application/json
 
 {
-  "userId": "60E4E364-15B7-4267-9728-08DAA13F9E82",
-  "name": "Monday2",
-  "age": 120,
-  "race": "string",
-  "sex": "string",
-  "personallity": "string",
-  "rentPeriod": 120,
-  "grade": 5,
-  "review": "string",
-  "imageUrls": "string"
+  "userId": "A3E46AE9-4695-46E2-CE87-08DAA182F527",
+    "name": "Urkel",
+    "age": 1,
+    "race": "Terrier",
+    "sex": "Male",
+    "personallity": "Very smart",
+    "rentPeriod": 2,
+    "grade": 1,
+    "review": "",
+    "imageUrls": "https://media.istockphoto.com/photos/dog-with-pencil-at-the-office-picture-id667786852?k=20&m=667786852&s=612x612&w=0&h=WuNB1lGE3kq0ZtbJgetKGc5ytxoGY0Hn4CPreT_QEgM="
 }
 ###
-DELETE https://puppy-backend.azurewebsites.net/api/V01/Advert/DeleteAdvertById/58bd2770-9703-48d1-6610-08daa1401796
+DELETE https://puppy-backend.azurewebsites.net/api/V01/Advert/DeleteAdvertById/7F81F817-EA65-4EC4-6611-08DAA1401796
 ###
 
 PATCH  https://puppy-backend.azurewebsites.net/api/V01/Advert/UpdateAdvert/159da9e2-a3ed-4b80-d5ea-08daa13f9e8e
 content-type: application/json
 
 {
-  "userId": "60e4e364-15b7-4267-9728-08daa13f9e82",
+  "userId": "A3E46AE9-4695-46E2-CE87-08DAA182F527",
   "name": "Throgg",
   "age": 105,
   "race": "River troll",
   "sex": "Male",
-  "personallity": "Will squezze and suck you dry, but not in a good way",
+  "personallity": "Likes to cudle",
   "rentPeriod": 1,
   "grade": 5,
   "review": "Ohh dear",
@@ -78,18 +78,18 @@ content-type: application/json
 }
 
 ###
-DELETE https://puppy-backend.azurewebsites.net/api/V01/User/DeleteUserById/45f9d223-9a3f-4f41-7c6f-08daa14e1db0
+DELETE https://puppy-backend.azurewebsites.net/api/V01/User/DeleteUserById/7007DEAA-D939-4E1B-E69F-08DAA17DF0E1
 ###
 
-PATCH  https://puppy-backend.azurewebsites.net/api/V01/User/UpdateUser/FAAC4B71-C8E5-477A-9E0A-08DAA1419869
+PATCH  https://puppy-backend.azurewebsites.net/api/V01/User/UpdateUser/A3E46AE9-4695-46E2-CE87-08DAA182F527
 content-type: application/json
 
 {
-  "alias": "PostUserTest2",
-  "phoneNr": "string",
+  "alias": "Kalle",
+  "phoneNr": "12345",
   "isLoggedIn": true,
   "profilePictureUrl": "string",
-  "authId": "0a1c4914-ec46-4a99-95cf-6326a35994b4"
+  "authId": "45308519-A643-44A3-8CCB-83C0F7B8E647"
 }
 
 ###
