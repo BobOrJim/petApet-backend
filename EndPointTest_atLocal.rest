@@ -3,8 +3,8 @@ POST https://localhost:7018/api/V01/Authenticate/login
 content-type: application/json
 
 {
-  "username": "jimmy",
-  "password": "nordin_A1"
+  "username": "janbannan",
+  "password": "password_A1"
 }
 ###
 POST https://localhost:7018/api/V01/Authenticate/register
@@ -15,6 +15,10 @@ content-type: application/json
   "email": "slask@example.com",
   "password": "nordin_A1"
 }
+###
+
+DELETE https://localhost:7018/api/V01/Authenticate/deleteAuthUserById/050c70d3-6d59-450e-9719-93ac3faf165a
+
 ###
 GET https://localhost:7018/api/V01/Advert/GetAllAdverts
 ###
@@ -75,7 +79,7 @@ content-type: application/json
 }
 
 ###
-DELETE https://localhost:7018/api/V01/User/DeleteUserById/FAAC4B71-C8E5-477A-9E0A-08DAA1419869
+DELETE https://localhost:7018/api/V01/User/DeleteUserById/41EFB2E0-7667-4505-457A-08DAA14DD347
 ###
 
 PATCH  https://localhost:7018/api/V01/User/UpdateUser/FAAC4B71-C8E5-477A-9E0A-08DAA1419869

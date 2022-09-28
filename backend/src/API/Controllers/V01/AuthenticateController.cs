@@ -5,6 +5,7 @@ using Core.Interfaces.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using System.Diagnostics;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -98,6 +99,27 @@ namespace API.Controllers.V01
                 return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User creation failed! Please check user details and try again." });
 
             return Ok(new Response { Status = "Success", Message = "User created successfully!" });
+        }
+
+        [HttpDelete]
+        [Route("deleteAuthUserById/{id:Guid}", Name = "DeleteAuthUserByIdAsync")]
+        public async Task<IActionResult> DeleteAuthUserByIdAsync(Guid id)
+        {
+            Debug.WriteLine("deleteAuthUserById");
+            {
+                var user = await _userManager.FindByIdAsync(id.ToString());
+                if (user == null)
+                {
+                    return NotFound();
+                }
+
+                var result = await _userManager.DeleteAsync(user);
+                if (result.Succeeded)
+                {
+                    return Ok(user);
+                }
+                return BadRequest();
+            }
         }
 
         [HttpPost]
