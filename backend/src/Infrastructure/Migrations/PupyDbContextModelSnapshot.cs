@@ -89,9 +89,8 @@ namespace Infrastructure.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("AuthId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("IsLoggedIn")
                         .HasColumnType("bit");

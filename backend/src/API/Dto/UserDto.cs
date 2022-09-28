@@ -12,9 +12,6 @@ namespace Core.Entities
         [MaxLength(200)]
         public string Alias { get; set; } = "";
         
-        [EmailAddress(ErrorMessage = "Invalid Email Address")]
-        public string Email { get; set; } = "";
-
         [MaxLength(20)]
         public string PhoneNr { get; set; } = "";
 
@@ -23,8 +20,9 @@ namespace Core.Entities
         [MaxLength(200)]
         public string ProfilePictureUrl { get; set; } = "";
 
-
-        public List<Advert>? Adverts { get; set; } = new(); //EF use this to create a relation between User and Advert
+        public string AuthId { get; set; } = "";
+        
+        //public List<Advert>? Adverts { get; set; } = new(); //EF use this to create a relation between User and Advert
     }
 }
 

@@ -15,10 +15,10 @@ namespace Infrastructure.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Alias = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PhoneNr = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     IsLoggedIn = table.Column<bool>(type: "bit", nullable: false),
-                    ProfilePictureUrl = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false)
+                    ProfilePictureUrl = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    AuthId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {

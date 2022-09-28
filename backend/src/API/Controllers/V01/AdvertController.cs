@@ -21,7 +21,7 @@ namespace API.Controllers.V01
             _iAdvertService = iAdvertService;
         }
         
-        [HttpPost] 
+        [HttpPost] //Return Ok()
         [Route("AddAdvert", Name = "AddAdvertAsync")]
         public async Task<IActionResult> AddAdvertAsync([FromBody] AdvertDto advertDto)
         {
@@ -53,7 +53,7 @@ namespace API.Controllers.V01
             }
         }
 
-        [HttpGet] 
+        [HttpGet] //Return Advert
         [Route("GetAdvertById/{id:Guid}", Name = "GetAdvertByIdAsync")]
         public async Task<IActionResult> GetAdvertByIdAsync(Guid id)
         {
@@ -67,7 +67,7 @@ namespace API.Controllers.V01
             return Ok(Advert);
         }
 
-        [HttpGet] 
+        [HttpGet] //Return Advert[]
         [Route("GetAllAdverts", Name = "GetAllAdvertsAsync")]
         public async Task<IActionResult> GetAllAdvertsAsync()
         {
@@ -75,7 +75,7 @@ namespace API.Controllers.V01
             return Ok(adverts);
         }
 
-        [HttpPatch] //PATCH always have a body.
+        [HttpPatch] //Return Advert
         [Route("UpdateAdvert/{id:Guid}", Name = "UpdateAdvertAsync")]
         public async Task<IActionResult> UpdateAdvertAsync(Guid id, [FromBody] AdvertDto advertDto)
         {
@@ -112,12 +112,12 @@ namespace API.Controllers.V01
             }
         }
 
-
-
         //ToDo:
         //Plocka ut auth.id ur token, och kolla att detta id kan spåras bakåt via user
         //till advert, och så att det som önskas tas bort tillhör user som lagt till.
-        [HttpDelete] //Funkar
+
+        
+        [HttpDelete] //Return Ok()
         [Route("DeleteAdvertById/{id:Guid}", Name = "DeleteAdvertByIdAsync")]
         public async Task<IActionResult> DeleteAdvertByIdAsync(Guid id)
         {
@@ -137,6 +137,18 @@ namespace API.Controllers.V01
             {
                 return StatusCode(500, ex.Message);
             }
+        }
+
+        [HttpGet] //Return Advert[]
+        [Route("GetAdvertsByUserId/{id:Guid}", Name = "GetAdvertsByUserIdAsync")]
+        public async Task<IActionResult> GetAdvertsByUserIdAsync(Guid id)
+        {
+            IEnumerable<Advert> adverts = await _iAdvertService.GetAllAsync(u => u.UserId == id);
+            if (adverts == null)
+            {
+                return NotFound();
+            }
+            return Ok(adverts);
         }
 
     }

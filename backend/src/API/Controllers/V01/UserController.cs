@@ -18,7 +18,7 @@ namespace API.Controllers.V01
             _iUserService = iUserService;
         }
         
-        [HttpPost]
+        [HttpPost] //Return Ok()
         [Route("AddUser", Name = "AddUserAsync")]
         public async Task<IActionResult> AddUserAsync([FromBody] UserDto userDto)
         {
@@ -31,10 +31,10 @@ namespace API.Controllers.V01
                 User user = new User
                 {
                     Alias = userDto.Alias,
-                    Email = userDto.Email,
                     PhoneNr = userDto.PhoneNr,
                     IsLoggedIn = userDto.IsLoggedIn,
                     ProfilePictureUrl = userDto.ProfilePictureUrl,
+                    AuthId = Guid.Parse(userDto.AuthId),
                 };
                 await _iUserService.InsertAsync(user);
                 return Ok();
@@ -46,7 +46,7 @@ namespace API.Controllers.V01
             }
         }
 
-        [HttpGet]
+        [HttpGet] //Return User
         [Route("GetUserById/{id:Guid}", Name = "GetUserByIdAsync")]
         public async Task<IActionResult> GetUserByIdAsync(Guid id)
         {
@@ -58,7 +58,7 @@ namespace API.Controllers.V01
             return Ok(user);
         }
 
-        [HttpGet]
+        [HttpGet] //Return User[]
         [Route("GetAllUsers", Name = "GetAllUsersAsync")]
         public async Task<IActionResult> GetAllUsersAsync()
         {
@@ -66,7 +66,7 @@ namespace API.Controllers.V01
             return Ok(users);
         }
 
-        [HttpPatch] //PATCH always have a body.
+        [HttpPatch] //Return User
         [Route("UpdateUser/{id:Guid}", Name = "UpdateUserAsync")]
         public async Task<IActionResult> UpdateUserAsync(Guid id, [FromBody] UserDto userDto)
         {
@@ -80,10 +80,10 @@ namespace API.Controllers.V01
                 {
                     Id = id,
                     Alias = userDto.Alias,
-                    Email = userDto.Email,
                     PhoneNr = userDto.PhoneNr,
                     IsLoggedIn = userDto.IsLoggedIn,
                     ProfilePictureUrl = userDto.ProfilePictureUrl,
+                    AuthId = Guid.Parse(userDto.AuthId),
                 };
                 if (await _iUserService.GetByIdAsync(id) == null)
                 {
@@ -98,7 +98,7 @@ namespace API.Controllers.V01
             }
         }
 
-        [HttpDelete]
+        [HttpDelete] //Return Ok()
         [Route("DeleteUserById/{id:Guid}", Name = "DeleteUserByIdAsync")]
         public async Task<IActionResult> DeleteUserByIdAsync(Guid id)
         {

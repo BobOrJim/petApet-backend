@@ -1,5 +1,7 @@
 ﻿using API.Identity;
 using API.Identity.Models;
+using Core.Entities;
+using Core.Interfaces.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -16,26 +18,41 @@ namespace API.Controllers.V01
         private readonly UserManager<IdentityUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IConfiguration _configuration;
+        private readonly IUserService _iUserService;
 
         public AuthenticateController(
             UserManager<IdentityUser> userManager,
             RoleManager<IdentityRole> roleManager,
-            IConfiguration configuration)
+            IConfiguration configuration,
+            IUserService iUserService)
         {
-            _userManager = userManager;
+            _userManager = userManager;  //För authUser
             _roleManager = roleManager;
             _configuration = configuration;
+            _iUserService = iUserService;  //För user
         }
 
-        [HttpPost]
+        [HttpPost] //Return Token
         [Route("login")]
         public async Task<IActionResult> Login([FromBody] LoginModel model)
         {
             var user = await _userManager.FindByNameAsync(model.Username);
             if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
             {
-                var userRoles = await _userManager.GetRolesAsync(user);
+                User? userInPuppyDb = CheckIfUserExistsInPuppyDb_ThatMatchAuthUser(user);
+                string userInPuppyDbId = "";
+                if (userInPuppyDb == null)
+                {
+                    await CreateUserInPuppyDb_ThatMatchAuthUser(user);
+                    userInPuppyDb = CheckIfUserExistsInPuppyDb_ThatMatchAuthUser(user);
+                    if (userInPuppyDb == null)
+                    {
+                        throw new Exception("User does not exist in PuppyDb, and backend failed to create one");
+                    }
+                    userInPuppyDbId = userInPuppyDb.Id.ToString();
+                }
 
+                var userRoles = await _userManager.GetRolesAsync(user);
                 var authClaims = new List<Claim>
                 {
                     //add id to claim
@@ -43,7 +60,6 @@ namespace API.Controllers.V01
                     new Claim(ClaimTypes.Name, user.UserName),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 };
-
                 foreach (var userRole in userRoles)
                 {
                     authClaims.Add(new Claim(ClaimTypes.Role, userRole));
@@ -51,17 +67,19 @@ namespace API.Controllers.V01
 
                 var token = GetToken(authClaims);
 
+                
                 return Ok(new
                 {
                     token = new JwtSecurityTokenHandler().WriteToken(token),
                     expiration = token.ValidTo,
-                    user = user.Id
+                    authUserId = user.Id,
+                    userId = userInPuppyDbId
                 });
             }
             return Unauthorized();
         }
 
-        [HttpPost]
+        [HttpPost] //Ok(new Response { Status = "Success", Message = "User created successfully!" });
         [Route("register")]
         public async Task<IActionResult> Register([FromBody] RegisterModel model)
         {
@@ -130,5 +148,28 @@ namespace API.Controllers.V01
 
             return token;
         }
+
+        private User? CheckIfUserExistsInPuppyDb_ThatMatchAuthUser(IdentityUser user)
+        {
+            {
+                User? userFromDb = _iUserService.GetAllAsync(x => x.AuthId == Guid.Parse(user.Id)).Result.FirstOrDefault();
+                return userFromDb;
+            }
+        }
+
+        private async Task CreateUserInPuppyDb_ThatMatchAuthUser(IdentityUser user)
+        {
+            User newUser = new()
+            {
+                Alias = "",
+                PhoneNr = "",
+                IsLoggedIn = false,
+                ProfilePictureUrl = "",
+                AuthId = Guid.Parse(user.Id),
+                Adverts = new List<Advert>(),
+            };
+            await _iUserService.InsertAsync(newUser);
+        }
     }
 }
+

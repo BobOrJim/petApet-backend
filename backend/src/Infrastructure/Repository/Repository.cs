@@ -35,6 +35,12 @@ namespace Infrastructure.Repository
             _context.Entry(storedEntity).CurrentValues.SetValues(entity);
             return await _context.SaveChangesAsync() > 0 ? entity : throw new Exception("Update failed");
         }
+        /*
+         * PUT is a method of modifying resource where the client sends data that updates the entire resource . 
+         * PATCH is a method of modifying resources where the client sends partial data that is to be updated 
+         * without modifying the entire data
+         * 
+         * */
 
         public async Task<bool> DeleteAsync(T entity)
         {
