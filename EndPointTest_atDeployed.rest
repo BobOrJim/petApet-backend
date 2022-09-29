@@ -3,7 +3,7 @@ POST https://puppy-backend.azurewebsites.net/api/V01/Authenticate/login
 content-type: application/json
 
 {
-  "username": "kalleknut",
+  "username": "janbannan",
   "password": "password_A1"
 }
 ###
@@ -11,7 +11,7 @@ POST https://puppy-backend.azurewebsites.net/api/V01/Authenticate/register
 content-type: application/json
 
 {
-  "username": "kalleknut",
+  "username": "kalleknut2",
   "email": "kalleknut@example.com",
   "password": "password_A1"
 }
@@ -98,108 +98,3 @@ content-type: application/json
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-###
-POST https://puppy-backend.azurewebsites.net/api/V01/Authenticate/login
-content-type: application/json
-
-{
-  "username": "jimmy",
-  "password": "nordin_A1"
-}
-###
-POST https://puppy-backend.azurewebsites.net/api/V01/Authenticate/register
-content-type: application/json
-
-{
-  "username": "jimmy2",
-  "email": "jimmy2@example.com",
-  "password": "nordin_A1"
-}
-###
-GET https://puppy-backend.azurewebsites.net/api/V01/Advert/GetAllAdverts
-###
-GET https://puppy-backend.azurewebsites.net/api/V01/Advert/GetAdvertById/7E1E4981-BDFE-4772-E6E3-08DA9E5DEB56
-###
-
-Post https://puppy-backend.azurewebsites.net/api/V01/Advert/AddAdvert
-content-type: application/json
-
-{
-  "userId": "32AE3A32-7E2F-410D-1401-08DA9E5DEB4B",
-  "name": "HALOJ HALOJ",
-  "age": 120,
-  "race": "string",
-  "sex": "string",
-  "personallity": "string",
-  "rentPeriod": 120,
-  "grade": 5,
-  "review": "string",
-  "imageUrls": "string"
-}
-###
-DELETE https://puppy-backend.azurewebsites.net/api/V01/Advert/DeleteAdvertById/7529E481-4C19-4075-D642-08DA9FB59F39
-###
-PATCH  https://puppy-backend.azurewebsites.net/api/V01/Advert/UpdateAdvert/135DC0A4-54F7-4C9B-7581-08DA9FB3C7D8
-content-type: application/json
-
-{
-  "userId": "32AE3A32-7E2F-410D-1401-08DA9E5DEB4B",
-  "name": "Monday3",
-  "age": 120,
-  "race": "string",
-  "sex": "string",
-  "personallity": "string",
-  "rentPeriod": 120,
-  "grade": 5,
-  "review": "string",
-  "imageUrls": "string"
-}
-###
-GET https://puppy-backend.azurewebsites.net/api/V01/User/GetAllUsers
-###
-GET https://puppy-backend.azurewebsites.net/api/V01/User/GetUserById/9CFDF585-9021-4032-1402-08DA9E5DEB4B
-###
-POST https://puppy-backend.azurewebsites.net/api/V01/User/AddUser
-content-type: application/json
-
-{
-  "alias": "HejHoppJagÄrNyIStand",
-  "email": "asdf@example.com",
-  "phoneNr": "string",
-  "isLoggedIn": true,
-  "profilePictureUrl": "string",
-  "adverts": []
-}
-
-###
-DELETE https://puppy-backend.azurewebsites.net/api/V01/User/DeleteUserById/52930F7F-5D4F-44BB-B7DE-08DA9FB5EBD0
-###
-
-PATCH  https://puppy-backend.azurewebsites.net/api/V01/User/UpdateUser/32AE3A32-7E2F-410D-1401-08DA9E5DEB4B
-content-type: application/json
-
-{
-  "alias": "mrGreen2",
-  "email": "julgran2@example.com",
-  "phoneNr": "string",
-  "isLoggedIn": true,
-  "profilePictureUrl": "string",
-  "adverts": [  ]
-}
-
-###

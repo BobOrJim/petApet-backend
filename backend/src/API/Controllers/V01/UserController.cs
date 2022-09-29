@@ -8,7 +8,6 @@ using System.Linq.Expressions;
 namespace API.Controllers.V01
 {
     [Route("api/V01/[controller]")]
-    //[Authorize]
     [ApiController]
     public class UserController : ControllerBase
     {
@@ -66,7 +65,8 @@ namespace API.Controllers.V01
             return Ok(users);
         }
 
-        [HttpPatch] //Return User
+        [HttpPatch] //Return User Auth
+        [Authorize]
         [Route("UpdateUser/{id:Guid}", Name = "UpdateUserAsync")]
         public async Task<IActionResult> UpdateUserAsync(Guid id, [FromBody] UserDto userDto)
         {
@@ -98,7 +98,8 @@ namespace API.Controllers.V01
             }
         }
 
-        [HttpDelete] //Return Ok()
+        [HttpDelete] //Return Ok() Auth
+        [Authorize]
         [Route("DeleteUserById/{id:Guid}", Name = "DeleteUserByIdAsync")]
         public async Task<IActionResult> DeleteUserByIdAsync(Guid id)
         {

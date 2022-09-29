@@ -3,8 +3,8 @@ POST https://localhost:7018/api/V01/Authenticate/login
 content-type: application/json
 
 {
-  "username": "janbannan",
-  "password": "password_A1"
+  "username": "slask",
+  "password": "nordin_A1"
 }
 ###
 POST https://localhost:7018/api/V01/Authenticate/register

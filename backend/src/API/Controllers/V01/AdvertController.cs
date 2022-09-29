@@ -11,7 +11,6 @@ using System.Linq.Expressions;
 namespace API.Controllers.V01
 {
     [Route("api/V01/[controller]")]
-    //[Authorize]
     [ApiController]
     public class AdvertController : ControllerBase
     {
@@ -22,6 +21,7 @@ namespace API.Controllers.V01
         }
         
         [HttpPost] //Return Ok()
+        [Authorize]
         [Route("AddAdvert", Name = "AddAdvertAsync")]
         public async Task<IActionResult> AddAdvertAsync([FromBody] AdvertDto advertDto)
         {
@@ -75,7 +75,8 @@ namespace API.Controllers.V01
             return Ok(adverts);
         }
 
-        [HttpPatch] //Return Advert
+        [HttpPatch] //Return Advert Auth
+        [Authorize]
         [Route("UpdateAdvert/{id:Guid}", Name = "UpdateAdvertAsync")]
         public async Task<IActionResult> UpdateAdvertAsync(Guid id, [FromBody] AdvertDto advertDto)
         {
@@ -117,7 +118,8 @@ namespace API.Controllers.V01
         //till advert, och så att det som önskas tas bort tillhör user som lagt till.
 
         
-        [HttpDelete] //Return Ok()
+        [HttpDelete] //Return Ok() Auth
+        [Authorize]
         [Route("DeleteAdvertById/{id:Guid}", Name = "DeleteAdvertByIdAsync")]
         public async Task<IActionResult> DeleteAdvertByIdAsync(Guid id)
         {
@@ -140,6 +142,7 @@ namespace API.Controllers.V01
         }
 
         [HttpGet] //Return Advert[]
+        [Authorize]
         [Route("GetAdvertsByUserId/{id:Guid}", Name = "GetAdvertsByUserIdAsync")]
         public async Task<IActionResult> GetAdvertsByUserIdAsync(Guid id)
         {
