@@ -19,8 +19,9 @@ namespace Core.Entities
 
         [MaxLength(200)]
         public string ProfilePictureUrl { get; set; } = "";
-        
 
+        public string ContactEmail { get; set; } = "";
+        
         public Guid AuthId { get; set; } //FK till AuthEntity, ligger dock utanför EF
 
 

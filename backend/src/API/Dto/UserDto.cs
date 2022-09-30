@@ -20,6 +20,8 @@ namespace Core.Entities
         [MaxLength(200)]
         public string ProfilePictureUrl { get; set; } = "";
 
+        public string ContactEmail { get; set; } = "";
+
         public string AuthId { get; set; } = "";
         
         //public List<Advert>? Adverts { get; set; } = new(); //EF use this to create a relation between User and Advert

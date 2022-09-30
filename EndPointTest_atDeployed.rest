@@ -7,6 +7,30 @@ content-type: application/json
   "password": "password_A1"
 }
 ###
+
+
+
+
+
+
+
+POST https://puppy-backend.azurewebsites.net/api/V01/Authenticate/login
+content-type: application/json
+
+{
+  "username": "banjo",
+  "password": "Password_A1"
+}
+
+###
+
+
+
+
+
+
+
+
 POST https://puppy-backend.azurewebsites.net/api/V01/Authenticate/register
 content-type: application/json
 

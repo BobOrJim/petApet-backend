@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(PupyDbContext))]
-    [Migration("20220928105115_V01")]
+    [Migration("20220930174617_V01")]
     partial class V01
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -93,6 +93,10 @@ namespace Infrastructure.Migrations
 
                     b.Property<Guid>("AuthId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ContactEmail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsLoggedIn")
                         .HasColumnType("bit");

@@ -92,6 +92,10 @@ namespace Infrastructure.Migrations
                     b.Property<Guid>("AuthId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("ContactEmail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("IsLoggedIn")
                         .HasColumnType("bit");
 

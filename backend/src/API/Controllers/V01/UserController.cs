@@ -33,6 +33,7 @@ namespace API.Controllers.V01
                     PhoneNr = userDto.PhoneNr,
                     IsLoggedIn = userDto.IsLoggedIn,
                     ProfilePictureUrl = userDto.ProfilePictureUrl,
+                    ContactEmail = userDto.ContactEmail,
                     AuthId = Guid.Parse(userDto.AuthId),
                 };
                 await _iUserService.InsertAsync(user);
@@ -83,6 +84,7 @@ namespace API.Controllers.V01
                     PhoneNr = userDto.PhoneNr,
                     IsLoggedIn = userDto.IsLoggedIn,
                     ProfilePictureUrl = userDto.ProfilePictureUrl,
+                    ContactEmail = userDto.ContactEmail,
                     AuthId = Guid.Parse(userDto.AuthId),
                 };
                 if (await _iUserService.GetByIdAsync(id) == null)

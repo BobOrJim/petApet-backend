@@ -26,8 +26,8 @@ public class PupyDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlServer(azureConnectionString);
-        //optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=PupyDb;Trusted_Connection=True;");
+        //optionsBuilder.UseSqlServer(azureConnectionString);
+        optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=PuppyDb;Trusted_Connection=True;");
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
