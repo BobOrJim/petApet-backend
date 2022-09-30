@@ -67,7 +67,7 @@ namespace API.Controllers.V01
         }
 
         [HttpPatch] //Return User Auth
-        [Authorize]
+        //[Authorize]
         [Route("UpdateUser/{id:Guid}", Name = "UpdateUserAsync")]
         public async Task<IActionResult> UpdateUserAsync(Guid id, [FromBody] UserDto userDto)
         {
@@ -101,7 +101,7 @@ namespace API.Controllers.V01
         }
 
         [HttpDelete] //Return Ok() Auth
-        [Authorize]
+        //[Authorize]
         [Route("DeleteUserById/{id:Guid}", Name = "DeleteUserByIdAsync")]
         public async Task<IActionResult> DeleteUserByIdAsync(Guid id)
         {

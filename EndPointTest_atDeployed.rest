@@ -98,6 +98,7 @@ content-type: application/json
   "phoneNr": "string",
   "isLoggedIn": true,
   "profilePictureUrl": "string",
+  "contactEmail": "bannan@gmail.com"
   "authId": "0a1c4914-ec46-4a99-95cf-6326a35994b4"
 }
 
