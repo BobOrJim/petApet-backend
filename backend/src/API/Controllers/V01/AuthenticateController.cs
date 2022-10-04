@@ -68,6 +68,14 @@ namespace API.Controllers.V01
 
                 var token = GetToken(authClaims);
 
+                //log in user in puppyDb
+                User? puppyUser = await _iUserService.GetByIdAsync(Guid.Parse(userInPuppyDbId));
+                if (puppyUser != null)
+                {
+                    puppyUser.IsLoggedIn = true;
+                    await _iUserService.UpdateAsync(puppyUser);
+                }
+
                 
                 return Ok(new
                 {
