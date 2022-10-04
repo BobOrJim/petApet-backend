@@ -69,6 +69,7 @@ namespace API.Controllers.V01
                 var token = GetToken(authClaims);
 
                 //log in user in puppyDb
+                //to Trigger build due to CICD trouble.
                 User? puppyUser = await _iUserService.GetByIdAsync(Guid.Parse(userInPuppyDbId));
                 if (puppyUser != null)
                 {
