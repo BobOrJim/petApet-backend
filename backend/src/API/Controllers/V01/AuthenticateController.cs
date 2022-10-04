@@ -71,13 +71,22 @@ namespace API.Controllers.V01
                 //log in user in puppyDb
                 //to Trigger build due to CICD trouble.
                 User? puppyUser = await _iUserService.GetByIdAsync(Guid.Parse(userInPuppyDbId));
-                if (puppyUser != null)
+                try
                 {
-                    puppyUser.IsLoggedIn = true;
-                    await _iUserService.UpdateAsync(puppyUser);
+                    if (puppyUser != null)
+                    {
+                        if (puppyUser.IsLoggedIn == false)
+                        {
+                            puppyUser.IsLoggedIn = true;
+                            await _iUserService.UpdateAsync(puppyUser);
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    throw new Exception("Possible EF error due to update of identical object");
                 }
 
-                
                 return Ok(new
                 {
                     token = new JwtSecurityTokenHandler().WriteToken(token),

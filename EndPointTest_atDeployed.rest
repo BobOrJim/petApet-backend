@@ -8,12 +8,6 @@ content-type: application/json
 }
 ###
 
-
-
-
-
-
-
 POST https://puppy-backend.azurewebsites.net/api/V01/Authenticate/login
 content-type: application/json
 
@@ -23,11 +17,6 @@ content-type: application/json
 }
 
 ###
-
-
-
-
-
 
 
 
