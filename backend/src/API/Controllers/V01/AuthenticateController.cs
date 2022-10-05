@@ -82,7 +82,7 @@ namespace API.Controllers.V01
                         }
                         if (puppyUser.Alias == "")
                         {
-                            puppyUser.Alias = "ChangeAlias";
+                            puppyUser.Alias = user.UserName;
                             await _iUserService.UpdateAsync(puppyUser);
                         }
 

@@ -12,8 +12,8 @@ POST https://puppy-backend.azurewebsites.net/api/V01/Authenticate/login
 content-type: application/json
 
 {
-  "username": "banjo",
-  "password": "Password_A1"
+  "username": "tuco54",
+  "password": "password_A1"
 }
 
 ###
@@ -24,8 +24,8 @@ POST https://puppy-backend.azurewebsites.net/api/V01/Authenticate/register
 content-type: application/json
 
 {
-  "username": "kalleknut2",
-  "email": "kalleknut@example.com",
+  "username": "tuco54",
+  "email": "kalleknut54@example.com",
   "password": "password_A1"
 }
 ###
@@ -95,7 +95,7 @@ content-type: application/json
 DELETE https://puppy-backend.azurewebsites.net/api/V01/User/DeleteUserById/7007DEAA-D939-4E1B-E69F-08DAA17DF0E1
 ###
 
-PATCH  https://puppy-backend.azurewebsites.net/api/V01/User/UpdateUser/A3E46AE9-4695-46E2-CE87-08DAA182F527
+PATCH  https://puppy-backend.azurewebsites.net/api/V01/User/UpdateUser/A0D98245-4018-41BD-E868-08DAA3355985
 content-type: application/json
 
 {
@@ -103,7 +103,7 @@ content-type: application/json
   "phoneNr": "12345",
   "isLoggedIn": true,
   "profilePictureUrl": "string",
-  "authId": "45308519-A643-44A3-8CCB-83C0F7B8E647"
+  "authId": "98018604-BD97-438A-A088-9E20093304C7"
 }
 
 ###
