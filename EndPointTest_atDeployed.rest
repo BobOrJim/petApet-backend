@@ -101,6 +101,7 @@ content-type: application/json
 {
   "alias": "Kalle",
   "phoneNr": "12345",
+  "contactEmail" : "halojAAA@gmail.com",
   "isLoggedIn": true,
   "profilePictureUrl": "string",
   "authId": "98018604-BD97-438A-A088-9E20093304C7"
