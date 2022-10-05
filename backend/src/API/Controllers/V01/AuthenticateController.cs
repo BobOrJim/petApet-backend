@@ -80,11 +80,17 @@ namespace API.Controllers.V01
                             puppyUser.IsLoggedIn = true;
                             await _iUserService.UpdateAsync(puppyUser);
                         }
+                        if (puppyUser.Alias == "")
+                        {
+                            puppyUser.Alias = "ChangeAlias";
+                            await _iUserService.UpdateAsync(puppyUser);
+                        }
+
                     }
                 }
                 catch (Exception e)
                 {
-                    throw new Exception("Possible EF error due to update of identical object");
+                    throw new Exception("Possible EF error due to update of identical object. Exception message= " +e);
                 }
 
                 return Ok(new
